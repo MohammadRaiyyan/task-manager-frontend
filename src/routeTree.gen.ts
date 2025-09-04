@@ -14,10 +14,12 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TasksIndexRouteImport } from './routes/tasks/index'
 import { Route as WorkspaceWorkspaceIdRouteImport } from './routes/workspace/$workspaceId'
 import { Route as FormAddressRouteImport } from './routes/form/address'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
 import { Route as WorkspaceWorkspaceIdGroupIdRouteImport } from './routes/workspace/$workspaceId.$groupId'
+import { Route as TasksDetailTaskIdRouteImport } from './routes/tasks/detail/$taskId'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo.form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo.form.address'
 
@@ -46,6 +48,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TasksIndexRoute = TasksIndexRouteImport.update({
+  id: '/tasks/',
+  path: '/tasks/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkspaceWorkspaceIdRoute = WorkspaceWorkspaceIdRouteImport.update({
   id: '/workspace/$workspaceId',
   path: '/workspace/$workspaceId',
@@ -67,6 +74,11 @@ const WorkspaceWorkspaceIdGroupIdRoute =
     path: '/$groupId',
     getParentRoute: () => WorkspaceWorkspaceIdRoute,
   } as any)
+const TasksDetailTaskIdRoute = TasksDetailTaskIdRouteImport.update({
+  id: '/tasks/detail/$taskId',
+  path: '/tasks/detail/$taskId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoFormSimpleRoute = DemoFormSimpleRouteImport.update({
   id: '/demo/form/simple',
   path: '/demo/form/simple',
@@ -87,8 +99,10 @@ export interface FileRoutesByFullPath {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/form/address': typeof FormAddressRoute
   '/workspace/$workspaceId': typeof WorkspaceWorkspaceIdRouteWithChildren
+  '/tasks': typeof TasksIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
+  '/tasks/detail/$taskId': typeof TasksDetailTaskIdRoute
   '/workspace/$workspaceId/$groupId': typeof WorkspaceWorkspaceIdGroupIdRoute
 }
 export interface FileRoutesByTo {
@@ -100,8 +114,10 @@ export interface FileRoutesByTo {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/form/address': typeof FormAddressRoute
   '/workspace/$workspaceId': typeof WorkspaceWorkspaceIdRouteWithChildren
+  '/tasks': typeof TasksIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
+  '/tasks/detail/$taskId': typeof TasksDetailTaskIdRoute
   '/workspace/$workspaceId/$groupId': typeof WorkspaceWorkspaceIdGroupIdRoute
 }
 export interface FileRoutesById {
@@ -114,8 +130,10 @@ export interface FileRoutesById {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/form/address': typeof FormAddressRoute
   '/workspace/$workspaceId': typeof WorkspaceWorkspaceIdRouteWithChildren
+  '/tasks/': typeof TasksIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
+  '/tasks/detail/$taskId': typeof TasksDetailTaskIdRoute
   '/workspace/$workspaceId/$groupId': typeof WorkspaceWorkspaceIdGroupIdRoute
 }
 export interface FileRouteTypes {
@@ -129,8 +147,10 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/form/address'
     | '/workspace/$workspaceId'
+    | '/tasks'
     | '/demo/form/address'
     | '/demo/form/simple'
+    | '/tasks/detail/$taskId'
     | '/workspace/$workspaceId/$groupId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -142,8 +162,10 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/form/address'
     | '/workspace/$workspaceId'
+    | '/tasks'
     | '/demo/form/address'
     | '/demo/form/simple'
+    | '/tasks/detail/$taskId'
     | '/workspace/$workspaceId/$groupId'
   id:
     | '__root__'
@@ -155,8 +177,10 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/form/address'
     | '/workspace/$workspaceId'
+    | '/tasks/'
     | '/demo/form/address'
     | '/demo/form/simple'
+    | '/tasks/detail/$taskId'
     | '/workspace/$workspaceId/$groupId'
   fileRoutesById: FileRoutesById
 }
@@ -169,8 +193,10 @@ export interface RootRouteChildren {
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   FormAddressRoute: typeof FormAddressRoute
   WorkspaceWorkspaceIdRoute: typeof WorkspaceWorkspaceIdRouteWithChildren
+  TasksIndexRoute: typeof TasksIndexRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
+  TasksDetailTaskIdRoute: typeof TasksDetailTaskIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -210,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tasks/': {
+      id: '/tasks/'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workspace/$workspaceId': {
       id: '/workspace/$workspaceId'
       path: '/workspace/$workspaceId'
@@ -237,6 +270,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/workspace/$workspaceId/$groupId'
       preLoaderRoute: typeof WorkspaceWorkspaceIdGroupIdRouteImport
       parentRoute: typeof WorkspaceWorkspaceIdRoute
+    }
+    '/tasks/detail/$taskId': {
+      id: '/tasks/detail/$taskId'
+      path: '/tasks/detail/$taskId'
+      fullPath: '/tasks/detail/$taskId'
+      preLoaderRoute: typeof TasksDetailTaskIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/demo/form/simple': {
       id: '/demo/form/simple'
@@ -275,8 +315,10 @@ const rootRouteChildren: RootRouteChildren = {
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   FormAddressRoute: FormAddressRoute,
   WorkspaceWorkspaceIdRoute: WorkspaceWorkspaceIdRouteWithChildren,
+  TasksIndexRoute: TasksIndexRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
+  TasksDetailTaskIdRoute: TasksDetailTaskIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

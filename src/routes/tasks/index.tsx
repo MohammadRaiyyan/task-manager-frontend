@@ -16,7 +16,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet.tsx'
 import TaskDetails from '@/components/common/TaskDetails.tsx'
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/tasks/')({
   component: App,
 })
 
@@ -172,14 +172,7 @@ function App() {
               <Card key={task.id} className="p-4  min-w-sm h-max">
                 <CardContent className="p-0 grid gap-3">
                   <div>
-                    <Link
-                      to="/tasks/detail/$taskId/modal"
-                      params={{ taskId: '123' }}
-                      mask={{
-                        to: '/tasks/detail/$taskId',
-                        params: { taskId: '123' },
-                      }}
-                    >
+                    <Link to="/tasks/detail/$taskId" params={{ taskId: '123' }}>
                       <h3 className="font-semibold text-lg">{task.title}</h3>
                     </Link>
                   </div>

@@ -15,32 +15,34 @@ interface MyRouterContext {
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-  component: () => (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <SidebarProvider>
-        <Sidebar />
-        {/* <div className="relative ml-[sidebar]">*/}
+  component: () => {
+    return (
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <SidebarProvider>
+          <Sidebar />
+          {/* <div className="relative ml-[sidebar]">*/}
 
-        <main className=" w-full h-[calc(100svh-16px)] shadow overflow-hidden bg-background  rounded-lg m-2">
-          <Header />{' '}
-          <div className="p-6 h-full w-full">
-            <Outlet />
-          </div>
-        </main>
-        {/* </div>*/}
-      </SidebarProvider>
-      <TanstackDevtools
-        config={{
-          position: 'bottom-left',
-        }}
-        plugins={[
-          {
-            name: 'Tanstack Router',
-            render: <TanStackRouterDevtoolsPanel />,
-          },
-          TanStackQueryDevtools,
-        ]}
-      />
-    </ThemeProvider>
-  ),
+          <main className=" w-full h-[calc(100svh-24px)] shadow overflow-hidden bg-background  rounded-lg m-2">
+            <Header />{' '}
+            <div className="px-6 py-4 h-full w-full">
+              <Outlet />
+            </div>
+          </main>
+          {/* </div>*/}
+        </SidebarProvider>
+        <TanstackDevtools
+          config={{
+            position: 'bottom-left',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+            TanStackQueryDevtools,
+          ]}
+        />
+      </ThemeProvider>
+    )
+  },
 })

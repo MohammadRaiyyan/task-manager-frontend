@@ -1,18 +1,17 @@
 import {
-  Bell,
+  CheckSquareIcon,
   Folder,
   LayoutDashboard,
+  type LucideProps,
   MoreHorizontal,
   PencilLine,
   PlusCircle,
-  Settings,
   Trash,
 } from 'lucide-react'
-import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
-import type { LucideProps } from 'lucide-react'
 import type { ForwardRefExoticComponent, RefAttributes } from 'react'
+import { useState } from 'react'
 import type { LinkProps } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,15 +41,15 @@ const items = [
     icon: LayoutDashboard,
   },
   {
-    title: 'Notifications',
-    url: '/notifications',
-    icon: Bell,
+    title: 'Tasks',
+    url: '/tasks',
+    icon: CheckSquareIcon,
   },
-  {
-    title: 'Settings',
-    url: '/settings',
-    icon: Settings,
-  },
+  // {
+  //   title: 'Settings',
+  //   url: '/settings',
+  //   icon: Settings,
+  // },
 ] satisfies Array<{
   title: string
   url: LinkProps['to']

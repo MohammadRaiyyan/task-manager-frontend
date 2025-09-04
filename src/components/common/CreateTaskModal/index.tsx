@@ -22,7 +22,7 @@ export default function CreateTaskModal() {
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-3xl p-0">
-          <DialogHeader className="border-b p-2 px-4  text-accent-foreground rounded-t-lg">
+          <DialogHeader className="border-b p-2 px-4 rounded-t-lg">
             <div className="w-80">
               <Combobox />
             </div>

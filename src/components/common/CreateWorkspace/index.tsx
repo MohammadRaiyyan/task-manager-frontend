@@ -27,7 +27,7 @@ export default function CreateWorkspaceModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <form>
         <DialogContent className="sm:max-w-md p-0 gap-3">
-          <DialogHeader className="border-b p-2 px-4 rounded-t-lg text-accent-foreground">
+          <DialogHeader className="border-b p-2 px-4 rounded-t-lg">
             <DialogTitle className="text-base">{heading}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-3 p-4">
